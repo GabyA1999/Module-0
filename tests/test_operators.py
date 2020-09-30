@@ -90,7 +90,13 @@ def test_property(ls1, ls2):
     is the same as the sum of each element of `ls1` plus each element of `ls2`.
     """
     # TODO: Implement for Task 0.3.
-    raise NotImplementedError('Need to implement for Task 0.3')
+
+    sum = operators.add(operators.sum(ls1), operators.sum(ls2))
+    elem_sum = operators.sum(operators.addLists(ls1, ls2))
+
+    assert_close(sum, elem_sum)
+
+    #raise NotImplementedError('Need to implement for Task 0.3')
 
 
 @pytest.mark.task0_3
