@@ -95,7 +95,6 @@ def test_property(ls1, ls2):
     elem_sum = operators.sum(operators.addLists(ls1, ls2))
 
     assert_close(sum, elem_sum)
-
     #raise NotImplementedError('Need to implement for Task 0.3')
 
 
