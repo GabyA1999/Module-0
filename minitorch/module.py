@@ -45,23 +45,39 @@ class Module:
 
         Returns:
             dict: Each name (key) and :class:`Parameter` (value) under this module.
-        """
-        #:TODO: this method :(
 
-        '''
-        dictionary = {key:value}
-        '''
-        #dict = self.parameters()
-'''
         dict = {}
-        for child in  self.modules():
+
+        names = name for name in self.__dict__["_modules"].keys()
+
+        #if name is seen - don't include
+
             dict[child] = self.__dict__["_parameters"].values()
 
         print(dict)
         return dict
-'''
+        """
+
+        dict = self._parameters.copy()
+     
+
+        return self.named_parameters_traverse(dict, self._modules)
 
         #raise NotImplementedError('Need to implement for Task 0.4')
+        
+        
+    def named_parameters_traverse(self, dict, children):
+        if children is None:
+            return
+        for name, child in children.items():
+            dictionary = {}
+            for key in child._parameters:
+                temp = name + "." + key
+                dictionary[temp] = child._parameters[key]
+            dict.update(dictionary)
+            self.named_parameters_traverse(dict, child._modules)
+        return dict
+        
 
     def parameters(self):
         return self.named_parameters().values()
